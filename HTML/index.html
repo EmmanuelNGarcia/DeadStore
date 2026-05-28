@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/Principal.css">
+
+    <title>DeadStore|Hombres</title>
+</head>
+<body>
+    <header>
+        <div id="Encabezado">
+            <h1 id="title">DeadStore</h1>
+            <ul>
+                <li><a href="../HTML/index.html">Hombre</a></li>
+                <li><a href="../HTML/indexM.html">Mujer</a></li>
+                <li>Rebajas</li>
+                
+            </ul>
+                <!-- Botón usuario -->
+                <button class="user-btn" id="userBtn"></button>
+
+                <!-- Menú dinámico -->
+                <div class="user-menu" id="userMenu"></div>
+                
+        </div>
+    </header>
+    <nav>
+        <div id="catalogo">
+            <div class="grid-productos">
+                <div class="producto" onclick="seleccionarProducto(this)" >
+                    <a href="../HTML/camisetas.html">
+                        <img src="../RESOURCE/img3.jpg" alt="Camiseta">
+                        <h3>Camisetas</h3>
+                    </a>
+                </div>
+                <div class="producto" onclick="seleccionarProducto(this)">
+                    <a href="jeans.html">
+                        <img src="../RESOURCE/img4.jpg" alt="Jeans">
+                        <h3>Jens</h3>
+                    </a>
+                </div>
+                <div class="producto" onclick="seleccionarProducto(this)">
+                    <a href="pantalones.html">
+                        <img src="../RESOURCE/img5.jpg" alt="Pantalón">
+                        <h3>Pantalones</h3>
+                    </a>
+                </div>
+                <div class="producto" onclick="seleccionarProducto(this)">
+                    <a href="sudaderas.html">
+                        <img src="../RESOURCE/img6.jpg" alt="Sudadera">
+                        <h3>Sudaderas</h3>
+                    </a>
+                </div>
+                <div class="producto" onclick="seleccionarProducto(this)">
+                    <a href="chamarras.html">
+                        <img src="../RESOURCE/img7.jpg" alt="Chamarra">
+                        <h3>Chamarras</h3>
+                    </a>
+                </div>
+                <div class="producto" onclick="seleccionarProducto(this)">
+                    <a href="sweaters.html">
+                        <img src="../RESOURCE/img8.jpg" alt="Sweater">
+                        <h3>Sweaters</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <footer>
+
+    </footer>
+</body>
+<script src="../JS/scriptPrincipal.js"></script>
+</html>

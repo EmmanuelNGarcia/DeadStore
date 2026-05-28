@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/Principal.css">
+    <link rel="stylesheet" href="../CSS/Inicio.css">
+    <title>DeadStore | Cesta</title>
+    <style>
+        .carrito-container {
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        .item-carrito {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+        .item-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .btn-comprar {
+            background-color: #000;
+            color: #fff;
+            width: 100%;
+            padding: 15px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            margin-top: 20px;
+            letter-spacing: 1px;
+            transition: background 0.3s ease;
+        }
+        .btn-comprar:hover { background-color: #333; }
+        .btn-eliminar {
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* --- CONTENEDOR DE ARBOLITOS ACUMULADOS --- */
+        #contenedor-arbolitos {
+            display: none; /* Se oculta si no lleva ningún árbol */
+            text-align: center;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        #arboles-acumulados {
+            font-size: 30px;
+            letter-spacing: 5px;
+            margin: 5px 0;
+            display: block;
+            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.1));
+            /* Animación sutil cada vez que aparece uno nuevo */
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #arboles-texto-contador {
+            color: #2E7D32;
+            font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="Encabezado">
+            <h1 id="title">DeadStore</h1>
+            <a href="index.html" style="color: black; text-decoration: none; text-transform: uppercase; font-size: 13px;">Volver a la tienda</a>
+        </div>
+    </header>
+    
+    <div id="progress-container">
+        <h2 style="font-weight: 400; letter-spacing: 1px; font-size: 1.2em;">META DE VENTAS SOTENIBLES</h2>
+        <div class="progress-bar-background">
+            <div id="progress-bar-fill"></div>
+            <span id="tree-icon" style="display: block;">🌳</span>
+        </div>
+        <p id="progress-text">0 / 3500 MXN</p>
+
+        <div id="contenedor-arbolitos">
+            <span id="arboles-acumulados"></span>
+            <p id="arboles-texto-contador">¡Llevas 0 arbolitos plantados!</p>
+        </div>
+    </div>
+
+    <div class="carrito-container">
+        <h2 style="font-weight: 400; letter-spacing: 2px;">TU CESTA</h2>
+        <div id="lista-carrito"></div>
+        <h3 style="text-align: right; margin-top: 20px; font-weight: 400;">Total: $<span id="total-carrito">0</span></h3>
+        <button class="btn-comprar" onclick="procesarCompra()">Tramitar Pedido</button>
+    </div>
+
+    <script src="../JS/scriptPrincipal.js"></script>
+    <script>
+        const metaVentas = 3500;
+
+        function renderizarBarra() {
+            let ventasTotales = parseFloat(localStorage.getItem("ventasTotales")) || 0;
+            
+            // LÓGICA DE REINICIO CÍCLICO Y CONTEO
+            let contadorArboles = Math.floor(ventasTotales / metaVentas); // Cuántos árboles completos lleva
+            let progresoActual = ventasTotales % metaVentas; // Cuánto dinero sobra para la barra actual
+
+            // Manejo visual: si el progreso es 0 pero ya tiene árboles, significa que está justo en el límite (ej. 3500 exactos)
+            if (progresoActual === 0 && contadorArboles > 0) {
+                // Opcional: mantener la barra llena en múltiplos exactos antes de que meta otra prenda
+                progresoActual = 0; 
+            }
+
+            let porcentaje = (progresoActual / metaVentas) * 100;
+
+            const barra = document.getElementById('progress-bar-fill');
+            const texto = document.getElementById('progress-text');
+            const contenedorArboles = document.getElementById('contenedor-arbolitos');
+            const arbolesAcumulados = document.getElementById('arboles-acumulados');
+            const arbolesTextoContador = document.getElementById('arboles-texto-contador');
+
+            if (barra && texto) {
+                barra.style.width = porcentaje + '%';
+                texto.innerText = `${Math.floor(progresoActual)} / ${metaVentas} MXN`;
+                
+                // Si ya recolectó al menos un árbol
+                if (contadorArboles > 0) {
+                    contenedorArboles.style.display = 'block';
+                    
+                    // .repeat() duplica el emoji tantas veces como árboles lleve ganados
+                    arbolesAcumulados.innerText = '🌳'.repeat(contadorArboles);
+                    
+                    arbolesTextoContador.innerText = `¡Has plantado ${contadorArboles} ${contadorArboles === 1 ? 'arbolito' : 'arbolitos'}!`;
+                    barra.style.backgroundColor = "#2E7D32"; // Color verde oscuro de éxito constante
+                } else {
+                    contenedorArboles.style.display = 'none';
+                    barra.style.backgroundColor = "#4CAF50"; // Verde estándar si no lleva árboles
+                }
+            }
+        }
+
+        function renderCarrito() {
+            const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+            const contenedor = document.getElementById("lista-carrito");
+            const totalE = document.getElementById("total-carrito");
+            let total = 0;
+
+            if(carrito.length === 0) {
+                contenedor.innerHTML = "<p style='color: gray; padding: 20px 0;'>Tu cesta está vacía.</p>";
+                totalE.innerText = "0";
+                return;
+            }
+
+            contenedor.innerHTML = "";
+            carrito.forEach((item, index) => {
+                total += item.precio;
+                contenedor.innerHTML += `
+                    <div class="item-carrito">
+                        <div class="item-info">
+                            <div>
+                                <h4 style="margin:0; font-weight:400;">${item.nombre} - Talla: ${item.talla}</h4>
+                                <p style="color: gray; margin: 5px 0;">$${item.precio}</p>
+                            </div>
+                        </div>
+                        <button class="btn-eliminar" onclick="eliminarDelCarrito(${index})">Eliminar</button>
+                    </div>
+                `;
+            });
+            totalE.innerText = total;
+        }
+
+        function eliminarDelCarrito(index) {
+            let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+            carrito.splice(index, 1);
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            renderCarrito();
+            if (typeof mostrarNotificacion === 'function') mostrarNotificacion("Producto eliminado");
+        }
+
+        function procesarCompra() {
+            const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+            if(carrito.length === 0) {
+                if (typeof mostrarNotificacion === 'function') mostrarNotificacion("Tu cesta está vacía.", true);
+                return;
+            }
+            
+            let totalCompra = carrito.reduce((sum, item) => sum + item.precio, 0);
+            let ventasHistoricas = parseFloat(localStorage.getItem("ventasTotales")) || 0;
+            
+            localStorage.setItem("ventasTotales", ventasHistoricas + totalCompra);
+            
+            renderizarBarra();
+
+            if (typeof mostrarNotificacion === 'function') mostrarNotificacion("¡Pedido tramitado con éxito!");
+            localStorage.removeItem("carrito");
+            
+            setTimeout(() => {
+                renderCarrito();
+            }, 1500);
+        }
+
+        renderCarrito();
+        renderizarBarra();
+    </script>
+</body>
+<button onclick="reiniciarMeta()" style="background: none; border: 1px solid #ccc; padding: 5px 10px; cursor: pointer; font-size: 11px; text-transform: uppercase; margin-top: 10px;">
+    Reiniciar Meta 🔄
+</button>
+<script>
+function reiniciarMeta() {
+    // Ponemos las ventas históricas a 0
+    localStorage.setItem("ventasTotales", 0);
+    
+    // Volvemos a pintar la barra (ahora vacía y sin árboles)
+    renderizarBarra();
+    
+    // Si tienes el sistema de alertas activado:
+    if (typeof mostrarNotificacion === 'function') {
+        mostrarNotificacion("Progreso reiniciado con éxito");
+    }
+}
+</script>
+</html>

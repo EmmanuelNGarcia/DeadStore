@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/Principal.css">
+    <link rel="stylesheet" href="../CSS/Inicio.css">
+    <title>DeadStore</title>
+</head>
+<body>
+    <div id="titulo">
+        <h1 id="title">DeadStore</h1>
+    </div>
+
+    <div id="progress-container">
+        <h2>Meta de Ventas</h2>
+        <div class="progress-bar-background">
+            <div id="progress-bar-fill"></div>
+            <span id="tree-icon">🌳</span>
+        </div>
+        <p id="progress-text">0 / 3500 MXN</p>
+    </div>
+
+    <div id="Imagenes">
+        <div>
+            <a href="../HTML/index.html">
+                <img src="../RESOURCE/img1.webp" alt="Hombres">
+            </a>
+            <h3>HOMBRES</h3>
+        </div>
+        <div>
+            <a href="../HTML/indexM.html">
+                <img src="../RESOURCE/img2.jpg" alt="Mujeres">
+            </a>
+            <h3>MUJERES</h3>
+        </div>
+    </div>
+    
+    <script>
+    // Cambiamos el valor fijo por una lectura al localStorage
+    const metaVentas = 3500;
+    // Si no existe ninguna venta previa, empezará en 0
+    let ventasActuales = parseFloat(localStorage.getItem("ventasTotales")) || 0; 
+
+    function renderizarBarra() {
+    let porcentaje = (ventasActuales / metaVentas) * 100;
+    if (porcentaje > 100) porcentaje = 100;
+
+    const barra = document.getElementById('progress-bar-fill');
+    const texto = document.getElementById('progress-text');
+    const iconoArbol = document.getElementById('tree-icon');
+
+    // Comprobamos que los elementos existan en la página actual para evitar errores
+    if (barra && texto && iconoArbol) {
+        barra.style.width = porcentaje + '%';
+        texto.innerText = `${ventasActuales} / ${metaVentas} MXN`;
+
+        if (ventasActuales >= metaVentas) {
+            iconoArbol.style.display = 'block';
+            texto.innerText = `¡Meta lograda! ${ventasActuales} / ${metaVentas} MXN 🌳`;
+            barra.style.backgroundColor = "#2E7D32"; 
+        } else {
+            iconoArbol.style.display = 'none';
+            barra.style.backgroundColor = "#4CAF50"; 
+        }
+    }
+}
+
+// Ejecutamos la función apenas cargue la página de inicio
+window.onload = renderizarBarra;
+    </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+#Imagenes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* espacio entre las imágenes */
+    flex-wrap: wrap; /* permite que se ajusten si no caben */
+}
+
+#Imagenes div {
+    position: relative;
+    text-align: center;
+}
+
+#Imagenes img {
+    width: 250px;
+    border-radius: 8px;
+    display: block;
+}
+
+#Imagenes h3 {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    background: rgba(0,0,0,0.5);
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin: 0;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    #Imagenes {
+        justify-content: space-around; /* distribuye mejor en pantallas medianas */
+    }
+
+    #Imagenes img {
+        width: 45%; /* cada imagen ocupa casi la mitad */
+    }
+}
+
+@media (max-width: 480px) {
+    #Imagenes {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    #Imagenes img {
+        width: 100%; /* cada imagen ocupa todo el ancho disponible */
+        max-width: 300px; /* límite para que no se vean gigantes */
+    }
+
+    #Imagenes h3 {
+        font-size: 16px;
+        bottom: 8px;
+        padding: 6px 10px;
+    }
+
+    #title {
+        font-size: 26px;
+        text-align: center;
+    }
+} 
+#progress-container {
+    width: 80%;
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.progress-bar-background {
+    width: 100%;
+    height: 35px;
+    background-color: #ddd;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #4CAF50;
+    border-radius: 20px;
+    transition: width 0.8s ease-in-out;
+}
+
+#tree-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    display: none;
+}
+
+#progress-text {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #333;
+}

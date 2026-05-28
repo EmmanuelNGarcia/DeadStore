@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Satisfy&display=swap');
+
+/* =========================================
+   ESTILOS GENERALES Y BASE
+   ========================================= */
+body {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: "Roboto", sans-serif;
+    padding: 0 20px;
+    margin: 0;
+}
+
+#Encabezado { 
+    padding: 20px 0;
+    display: flex;                     
+    align-items: center;               
+    justify-content: space-between;   
+    border-bottom: 1px solid #f0f0f0;
+}
+
+#title {
+    font-family: "Satisfy", cursive;
+    font-weight: 400;
+    font-size: 40px;
+    color: #000000;
+    margin: 0;
+}
+
+ul {
+    list-style: none;       
+    margin: 0;
+    padding: 0;
+    display: flex;          
+    gap: 30px;              
+}
+
+ul li {
+    font-weight: 400;
+    color: #000000;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
+    cursor: pointer;     
+}
+
+ul li a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul li:hover, ul li a:hover {
+    color: #888888; 
+}
+
+/* =========================================
+   CATÁLOGO DE PRODUCTOS
+   ========================================= */
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.producto {
+    background: transparent;
+    padding: 0;
+    text-align: center;
+    box-shadow: none;
+}
+
+.producto a {
+    text-decoration: none;
+    color: inherit;
+    display: block; 
+}
+
+.producto img {
+    width: 100%;
+    border-radius: 0;
+    object-fit: cover;
+    aspect-ratio: 3/4;
+    margin-bottom: 10px;
+}
+
+.producto h3 {
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+    margin: 10px 0 5px 0;
+}
+
+.producto p {
+    color: gray;
+    margin: 0 0 10px 0;
+    font-size: 14px;
+}
+
+/* Selector de Tallas */
+.selector-talla {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border: 1px solid #eeeeee;
+    background-color: transparent;
+    color: #000000;
+    font-family: "Roboto", sans-serif;
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    transition: border-color 0.3s ease;
+}
+
+.selector-talla:focus, .selector-talla:hover {
+    border-color: #000000;
+}
+
+/* Botón cesta */
+.btn-cesta {
+    background: #ffffff;
+    color: #000000;
+    padding: 10px 0;
+    border: 1px solid #000000;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-cesta:hover {
+    background: #000000;
+    color: #ffffff;
+}
+
+/* =========================================
+   PÁGINA DE INICIO (CATEGORÍAS)
+   ========================================= */
+#Imagenes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+#Imagenes div {
+    position: relative;
+    text-align: center;
+}
+
+#Imagenes img {
+    width: 350px;
+    border-radius: 0;
+    display: block;
+    object-fit: cover;
+}
+
+#Imagenes h3 {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 24px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: rgba(0,0,0,0.4);
+    padding: 10px 20px;
+    margin: 0;
+    width: 80%;
+    text-align: center;
+}
+
+/* =========================================
+   ÍCONOS Y MENÚ DE USUARIO
+   ========================================= */
+.icon-group {
+    display: flex; 
+    gap: 15px; 
+    align-items: center;
+}
+
+.user-btn, .cart-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.user-btn::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E");
+    background-size: cover;
+}
+
+.cart-btn::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='21' r='1'/%3E%3Ccircle cx='20' cy='21' r='1'/%3E%3Cpath d='M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6'/%3E%3C/svg%3E");
+    background-size: cover;
+}
+
+.user-menu {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: #fff;
+    border: 1px solid #eee;
+    display: none;
+    flex-direction: column;
+    min-width: 160px;
+    z-index: 100;
+}
+
+.user-menu.active {
+    display: flex;
+}
+
+.user-menu button {
+    background: none;
+    border: none;
+    padding: 15px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 13px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #eee;
+}
+
+.user-menu button:hover {
+    background: #f9f9f9;
+}
+
+/* =========================================
+   SISTEMA DE NOTIFICACIONES TOAST
+   ========================================= */
+#toast-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.toast-msg {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 15px 25px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: aparecer 0.3s forwards, desaparecer 0.3s forwards 2.5s;
+}
+
+@keyframes aparecer { to { opacity: 1; transform: translateY(0); } }
+@keyframes desaparecer { to { opacity: 0; transform: translateY(-20px); } }
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+    #Encabezado {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .grid-productos { grid-template-columns: repeat(2, 1fr); }
+    .icon-group {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    #Imagenes img { width: 45vw; }
+}
+
+@media (max-width: 480px) {
+    .grid-productos { grid-template-columns: 1fr; }
+    #Imagenes img { width: 100%; max-width: 350px; }
+    #Imagenes h3 { font-size: 18px; padding: 8px 10px; }
+}

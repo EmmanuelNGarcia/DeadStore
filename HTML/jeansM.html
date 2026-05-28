@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/Principal.css">
+    <title>DeadStore | Jeans</title>
+</head>
+<body>
+    <header>
+        <div id="Encabezado">
+            <h1 id="title">DeadStore</h1>
+            <ul>
+                <li><a href="index.html">Hombre</a></li>
+                <li><a href="indexM.html">Mujer</a></li>
+                <li><a href="#">Rebajas</a></li>
+            </ul>
+            
+            <div class="icon-group">
+                <button class="user-btn" id="userBtn" title="Usuario"></button>
+                <button class="cart-btn" onclick="window.location.href='carrito.html'" title="Ver Cesta"></button>
+            </div>
+            <div class="user-menu" id="userMenu"></div>
+        </div>
+    </header>
+    
+    <nav>
+        <div id="catalogo">
+            <h2 style="margin-top: 30px; font-weight: 400; text-transform: uppercase; text-align: center;">Jeans</h2>
+            
+            <div class="grid-productos">
+                
+                <!-- Producto 1 -->
+                <div class="producto">
+                    <a href="#">
+                        <img src="../RESOURCE/img39.webp" alt="Jeans Slim Fit">
+                        <h3>Jeans Slim Fit</h3>
+                        <p>$599</p>
+                    </a>
+                    
+                    <select class="selector-talla" id="talla-jean1">
+                        <option value="" disabled selected>Selecciona tu talla</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                    
+                    <button class="btn-cesta" onclick="agregarAlCarrito('Jeans Slim Fit', 599, 'talla-jean1')">Añadir a la cesta</button>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="producto">
+                    <a href="#">
+                        <img src="../RESOURCE/img40.webp" alt="Jeans Regular Fit">
+                        <h3>Jeans Regular Fit</h3>
+                        <p>$499</p>
+                    </a>
+                    
+                    <select class="selector-talla" id="talla-jean2">
+                        <option value="" disabled selected>Selecciona tu talla</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                    
+                    <button class="btn-cesta" onclick="agregarAlCarrito('Jeans Regular Fit', 499, 'talla-jean2')">Añadir a la cesta</button>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="producto">
+                    <a href="#">
+                        <img src="../RESOURCE/img41.webp" alt="Jeans Relaxed Fit">
+                        <h3>Jeans Relaxed Fit</h3>
+                        <p>$649</p>
+                    </a>
+                    
+                    <select class="selector-talla" id="talla-jean3">
+                        <option value="" disabled selected>Selecciona tu talla</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                    
+                    <button class="btn-cesta" onclick="agregarAlCarrito('Jeans Relaxed Fit', 649, 'talla-jean3')">Añadir a la cesta</button>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+    
+    <footer>
+        <p style="text-align: center; margin-top: 50px; padding-bottom: 20px; color: gray; font-size: 12px; text-transform: uppercase;">© 2026 DeadStore</p>
+    </footer>
+
+    <script src="../JS/scriptPrincipal.js"></script>
+</body>
+</html>

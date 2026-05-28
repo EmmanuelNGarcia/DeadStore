@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/Principal.css">
+    <title>DeadStore | Sudaderas</title>
+</head>
+<body>
+    <header>
+        <div id="Encabezado">
+            <h1 id="title">DeadStore</h1>
+            <ul>
+                <li><a href="index.html">Hombre</a></li>
+                <li><a href="indexM.html">Mujer</a></li>
+            </ul>
+            
+            <div class="icon-group">
+                <button class="user-btn" id="userBtn" title="Usuario"></button>
+                <button class="cart-btn" onclick="window.location.href='carrito.html'" title="Ver Cesta"></button>
+            </div>
+            <div class="user-menu" id="userMenu"></div>
+        </div>
+    </header>
+    
+    <nav>
+        <div id="catalogo">
+            <h2 style="margin-top: 30px; font-weight: 400; text-transform: uppercase; text-align: center;">Sudaderas</h2>
+            
+            <div class="grid-productos">
+                
+                <div class="producto">
+                    <a href="#">
+                        <img src="../RESOURCE/img45.webp" alt="Sudadera con Capucha">
+                        <h3>Sudadera con Capucha</h3>
+                        <p>$699</p>
+                    </a>
+                    
+                    <select class="selector-talla" id="talla-sudadera1">
+                        <option value="" disabled selected>Selecciona tu talla</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                    
+                    <button class="btn-cesta" onclick="agregarAlCarrito('Sudadera con Capucha', 699, 'talla-sudadera1')">Añadir a la cesta</button>
+                </div>
+
+                <div class="producto">
+                    <a href="#">
+                        <img src="../RESOURCE/img46.webp" alt="Sudadera Oversize">
+                        <h3>Sudadera Oversize</h3>
+                        <p>$749</p>
+                    </a>
+                    
+                    <select class="selector-talla" id="talla-sudadera2">
+                        <option value="" disabled selected>Selecciona tu talla</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                    
+                    <button class="btn-cesta" onclick="agregarAlCarrito('Sudadera Oversize', 749, 'talla-sudadera2')">Añadir a la cesta</button>
+                </div>
+
+                <div class="producto">
+                    <a href="#">
+                        <img src="../RESOURCE/img47.webp" alt="Sudadera Crewneck">
+                        <h3>Sudadera Crewneck</h3>
+                        <p>$599</p>
+                    </a>
+                    
+                    <select class="selector-talla" id="talla-sudadera3">
+                        <option value="" disabled selected>Selecciona tu talla</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                    
+                    <button class="btn-cesta" onclick="agregarAlCarrito('Sudadera Crewneck', 599, 'talla-sudadera3')">Añadir a la cesta</button>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+    
+    <footer>
+        <p style="text-align: center; margin-top: 50px; padding-bottom: 20px; color: gray; font-size: 12px; text-transform: uppercase;">© 2026 DeadStore</p>
+    </footer>
+
+    <script src="../JS/scriptPrincipal.js"></script>
+</body>
+</html>
